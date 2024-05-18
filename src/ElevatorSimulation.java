@@ -13,13 +13,14 @@ public class ElevatorSimulation {
      */
     private float queryProbability;
     private int ticks;
+
     private Elevator[] elevators;
     private int numElevators;
     public static ConcurrentSkipListMap<Integer, ConcurrentLinkedQueue<Integer>> PeopleOnFloor;
 
     ElevatorSimulation() {
         this.height = 8;
-        this.ticks = 100;
+        this.ticks = 500;
         this.numElevators = 2;
         this.queryProbability = 40f;
         this.elevators = new Elevator[numElevators];
