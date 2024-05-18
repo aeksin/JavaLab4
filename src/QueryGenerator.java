@@ -4,11 +4,11 @@ import java.util.concurrent.atomic.AtomicBoolean;
 public class QueryGenerator implements Runnable {
     private int height;
     /**
-     * probability both from and to != 0
+     * probability both from and to != 0 in percents
      */
     private float notFromToFirstProbability; //
     /**
-     * probability that from<to
+     * probability that from<to in percents
      */
     private float upProbability;
     private AtomicBoolean generate;
@@ -34,6 +34,8 @@ public class QueryGenerator implements Runnable {
         this.height = height;
         this.notFromToFirstProbability = notFromToFirstProbability;
         this.upProbability = upProbability;
+        generate = new AtomicBoolean(false);
+        kill = new AtomicBoolean(false);
     }
 
     public void generateQuery() throws InterruptedException {

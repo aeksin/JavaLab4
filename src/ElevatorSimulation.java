@@ -9,7 +9,7 @@ import static java.lang.Thread.sleep;
 public class ElevatorSimulation {
     private int height;
     /**
-     * probability of query being generated per tick
+     * probability of query being generated per tick in percents
      */
     private float queryProbability;
     private int ticks;
@@ -20,8 +20,24 @@ public class ElevatorSimulation {
     ElevatorSimulation() {
         this.height = 8;
         this.ticks = 100;
-        numElevators = 2;
-        queryProbability = 40f;
+        this.numElevators = 2;
+        this.queryProbability = 40f;
+        this.elevators = new Elevator[numElevators];
+        for (int i = 0; i < numElevators; i++) {
+            elevators[i] = new Elevator(height, i);
+        }
+        PeopleOnFloor = new ConcurrentSkipListMap<>();
+
+        for (int i = 0; i < height; i++) {
+            PeopleOnFloor.put(i, new ConcurrentLinkedQueue<>());
+        }
+    }
+
+    ElevatorSimulation(int height, int ticks, int numElevators, float queryProbability) {
+        this.height = height;
+        this.ticks = ticks;
+        this.numElevators = numElevators;
+        this.queryProbability = queryProbability;
         this.elevators = new Elevator[numElevators];
         for (int i = 0; i < numElevators; i++) {
             elevators[i] = new Elevator(height, i);
